@@ -1,50 +1,39 @@
 <script>
-	export let devName;
-	let avatar = 'about-me/avatar.png';
+  export let devName;
+  export let devProfileInfoPT;
+  export let devProfileInfoEN;
+  let lang = 'PT';
+  
+  import AboutMe from './AboutMe.svelte';
 </script>
 
-<main style="background-color: #000">
-	<h1>Hello {devName}!</h1>
-  <div class="avatar-container">
-    <img src={avatar} class="avatar" alt="avatar memoji em fundo preto"/>
-  </div>
+<main style="background-color: #fff">
+  <!--h1>Hello {devName}!</h1-->
+  {#if lang == 'PT'}
+    <AboutMe {devName} devProfileInfo={devProfileInfoPT} ></AboutMe>
+  {:else}
+    <AboutMe {devName} devProfileInfo={devProfileInfoEN}></AboutMe>
+  {/if}
+  <div class="content"></div>
 </main>
 
 <style>
 	main {
-		text-align: center;
-		
-		max-width: 310px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-  .avatar-container {
-    border: .5rem solid #fff;
-    border-radius: 50%;
-    max-width: 300px;
-    max-height: 300px;
-  }
-
-  .avatar {
-    border-radius: 50%;
-    overflow: hidden;
-    max-width: 300px;
-    width: 100%;
-    max-height: 300px;
     text-align: center;
+    width: 100%;
+		max-width: calc(100% - 10px);
+    margin: 0 auto;
+    overflow: hidden;
+	}
+  
+  .content{
+    background-color: #37474f;
   }
 
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
-      padding: 1rem;
+      overflow-x: hidden;
 		}
 	}
 </style>
